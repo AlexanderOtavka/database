@@ -1,0 +1,21 @@
+{
+  "name": "Database",
+  "homepage": "https://github.com/duncangrubbs/database",
+  "authors": [
+    "Duncan Grubbs <duncan.grubbs@gmail.com>"
+  ],
+  "description": "A web database",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0"
+  }
+}
