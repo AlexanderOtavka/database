@@ -4,11 +4,12 @@ api_version: 1
 threadsafe: true
 
 handlers:
+- url: /styles
+  static_dir: styles
+- url: /scripts
+  static_dir: scripts
 - url: /.*
   script: main.app
-- url: /style\.css
-  static_files: style.css
-  upload: style\.css
 
 libraries:
 - name: webapp2

@@ -1,22 +1,43 @@
+<!DOCTYPE html>
+
 <html>
+
   <head>
+
     <title>Database</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../styles/style.css">
+
+    <script>
+      if (window.location.hash === "#refresh") {
+        window.location.href = "/";
+      }
+    </script>
+
   </head>
 
   <body>
 
-    <p>Database<p>
-    <form action="/about" method="get">
+    <h1>Database<h1>
+    <div class="nav">
+      <form action="/about" method="get"><button type="submit">About</button></form>
+    </div>
+
+    <!-- <form action="/about" method="get">
       <button type="submit">About</button>
-    </form>
+    </form> -->
 
     <form action="/add" method="post">
       <div class="display"><textarea name="name" rows="3" cols="60"></textarea></div>
       <div><input type="submit" value="Enter Name"></div>
     </form>
-  </body>
 
-  <h4> {{ data }} </h4>
+    <h2>List:</h2>
+    {% for name in names %}
+    <ul>
+      <li><p>{{ name.content }}</p></li>
+    </ul>
+    {% endfor %}
+
+  </body>
 
 </html>

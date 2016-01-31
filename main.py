@@ -8,28 +8,31 @@ import os
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + "/client"))
 
+class Name(ndb.Model):
+  content = ndb.StringProperty()
+
 class MainPage(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('index.html')
-        self.response.write(template.render())
+
+        #Queries for names in datastore
+        qry = Name.query()
+
+        self.response.write(template.render({ 'names': qry.fetch() }))
 
 class About_Page(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('about.html')
         self.response.write(template.render())
 
-class Display_Data(webapp2.RequestHandler):
-    content = nbd.StringProperty()
-    model = content.Display_Data(content='foo')
-    model.content = "bar"
-
-    content = self.request.get()
+class Store_Data(webapp2.RequestHandler):
     def post(self):
-        template = JINJA_ENVIRONMENT.get_template('index.html')
-        self.response.write(template.render())
+        name = Name(content=self.request.get('name')) #Creates in memory
+        name.put() #Write to datastore
+        self.redirect('/#refresh')
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
-    ('/add', Display_Data),
+    ('/add', Store_Data),
     ('/about', About_Page),
 ], debug=True)
