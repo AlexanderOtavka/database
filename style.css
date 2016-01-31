@@ -1,0 +1,13 @@
+body {
+  font-size: 16em;
+  font-family: 'Helvetica', sans-serif;
+  text-align: center;
+}
+
+p {
+  font-size: 40;
+}
+
+.list {
+  text-align: center;
+}
