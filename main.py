@@ -11,6 +11,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class Data(ndb.Model):
   content = ndb.StringProperty()
   date = ndb.DateTimeProperty(auto_now_add=True)
+  ip_address = ndb.StringProperty()
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
@@ -33,6 +34,13 @@ class Store_Data(webapp2.RequestHandler):
 
         date = Data(content=cgi.escape(self.request.get('date')))
         date.put()
+
+        ip = self.request.remote_addr
+        ipadress = Data(content=self.request.get('ip'))
+        log = Data()
+        log.ip_address = ip
+        log.put()
+
         self.redirect('/#refresh')
 
 app = webapp2.WSGIApplication([
