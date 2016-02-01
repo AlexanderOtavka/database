@@ -11,7 +11,9 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class Data(ndb.Model):
   content = ndb.StringProperty()
   date = ndb.DateTimeProperty(auto_now_add=True)
-  ip_address = ndb.StringProperty()
+
+class IP(ndb.Model):
+    ip_address = ndb.StringProperty()
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
@@ -36,8 +38,8 @@ class Store_Data(webapp2.RequestHandler):
         date.put()
 
         ip = self.request.remote_addr
-        ipadress = Data(content=self.request.get('ip'))
-        log = Data()
+        ipadress = IP(ip_address=self.request.get('ipadress'))
+        log = IP()
         log.ip_address = ip
         log.put()
 
