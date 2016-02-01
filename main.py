@@ -8,15 +8,16 @@ import os
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + "/client"))
 
-class Name(ndb.Model):
+class Data(ndb.Model):
   content = ndb.StringProperty()
+  date = ndb.DateTimeProperty(auto_now_add=True)
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('index.html')
 
         #Queries for names in datastore
-        qry = Name.query()
+        qry = Data.query()
 
         self.response.write(template.render({ 'names': qry.fetch() }))
 
@@ -27,8 +28,11 @@ class About_Page(webapp2.RequestHandler):
 
 class Store_Data(webapp2.RequestHandler):
     def post(self):
-        name = Name(content=self.request.get('name')) #Creates in memory
+        name = Data(content=cgi.escape(self.request.get('name'))) #Creates in memory
         name.put() #Write to datastore
+
+        date = Data(content=cgi.escape(self.request.get('date')))
+        date.put()
         self.redirect('/#refresh')
 
 app = webapp2.WSGIApplication([
