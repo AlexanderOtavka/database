@@ -3,40 +3,59 @@
 <html>
 
   <head>
-
     <title>Database</title>
-    <link rel="stylesheet" href="../styles/style.css">
 
-    <script>
-      if (window.location.hash === "#refresh") {
-        window.location.href = "/";
-      }
-    </script>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="import" href="bower_components/google-map/google-map.html">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <script type="text/javascript" src="scripts/script.js"></script>
+    <script type="text/javascript" src="bower_components/webcomponentsjs/webcomponents"></script>
 
   </head>
 
   <body>
 
-    <h1>Database<h1>
-    <div class="nav">
-      <form action="/about" method="get"><button type="submit">About</button></form>
+    <div class="content">
+
+      <div class="container content">
+
+        <div class="row">
+          <h1>Database<h1>
+        </div>
+
+        <div class="row">
+          <form action="/about" method="get">
+            <button class="btn btn-default" type="submit">About</button>
+          </form>
+        </div>
+
+      <div class="row">
+
+        <form action="/add" method="post">
+
+            <div class="form-group">
+              <label for="name">Enter a Name:</label>
+              <input class="form-control name-input" id="name" type="text" name="name" placeholder="Name">
+              <button class="button btn btn-default" type="submit">Submit</button>
+            </div>
+
+        </form>
+
+      </div>
+
+        <div class="row">
+          <h2>List of Names:</h2>
+          {% for name in names %}
+          <ul>
+            <li><p>{{ name.content }}</p></li>
+          </ul>
+          {% endfor %}
+        </div>
+
+      </div>
+
     </div>
-
-    <!-- <form action="/about" method="get">
-      <button type="submit">About</button>
-    </form> -->
-
-    <form action="/add" method="post">
-      <div class="display"><textarea name="name" rows="3" cols="60"></textarea></div>
-      <div><input type="submit" value="Enter Name"></div>
-    </form>
-
-    <h2>List:</h2>
-    {% for name in names %}
-    <ul>
-      <li><p>{{ name.content }}</p></li>
-    </ul>
-    {% endfor %}
 
   </body>
 
