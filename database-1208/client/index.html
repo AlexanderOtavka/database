@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>Database</title>
+
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <script type="text/javascript" src="scripts/script.js"></script>
+  </head>
+
+  <body>
+
+    <div class="content">
+
+      <div class="container content">
+
+        <div class="row">
+          <h1>Database<h1>
+        </div>
+
+        <div class="row">
+          <form action="/about" method="get">
+            <button class="btn btn-default" type="submit">About</button>
+          </form>
+        </div>
+
+      <div class="row">
+
+        <form action="/add" method="post">
+
+            <div class="form-group">
+              <label for="name">Enter a Name:</label>
+              <input class="form-control name-input" id="name" type="text" name="name" placeholder="Name">
+              <button class="button btn btn-default" type="submit">Submit</button>
+            </div>
+
+        </form>
+
+      </div>
+
+        <div class="row">
+          <h2>List of Names:</h2>
+          {% for name in names %}
+          <ul>
+            <li><p>{{ name.content }}</p></li>
+          </ul>
+          {% endfor %}
+        </div>
+
+      </div>
+
+    </div>
+
+  </body>
+
+</html>
