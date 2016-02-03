@@ -51,7 +51,8 @@ class Store_Data(webapp2.RequestHandler):
         date = Data(content=cgi.escape(self.request.get('date')))
         date.put()
 
-        ip = self.request.remote_addr
+        ip = self.request.get(remote_addr)
+        print ip
         ipadress = IP(ip_address=self.request.get('ipadress'))
         log = IP()
         log.ip_address = ip
