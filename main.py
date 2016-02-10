@@ -3,6 +3,7 @@ from google.appengine.ext import ndb
 import webapp2
 import jinja2
 import os
+import random
 
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -24,10 +25,19 @@ class About(webapp2.RequestHandler):
 
 class Inner(webapp2.RequestHandler):
     def post(self):
-        name = Data(content=cgi.escape(self.request.get('name'))) #Creates in memory
-        name.put() #Write to datastore
+        #name = Data(content=cgi.escape(self.request.get('name'))) #Creates in memory
+        #name.put() #Write to datastore
 
-        self.redirect('/#refresh')
+        names = Data.query().fetch()
+        name = random.choice(names)
+
+        name.key.delete()
+
+        template = JINJA_ENVIRONMENT.get_template('index.html')
+
+        self.response.write(template.render({'name': name.content}))
+
+        #self.redirect('/#refresh')
 
 class Outer(webapp2.RequestHandler):
     def post(self):
