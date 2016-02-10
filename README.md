@@ -1,5 +1,5 @@
 # Database
-## A web based databse for storing strings 
+## A web based database for storing strings 
 
 ### This repository is both the  web client and the server for a simple Family Name Database written with Google App Engine and Bootstrap.
 

@@ -29,26 +29,19 @@
 
       <div class="row">
 
-        <form action="/add" method="post">
-
+        <form action="/inner" method="post">
             <div class="form-group">
               <label for="name">Enter a Name:</label>
-              <input class="form-control name-input" id="name" type="text" name="name" placeholder="Name">
-              <button class="button btn btn-default" type="submit">Submit</button>
+              <input class="form-control name-input" id="name" type="text" name="name" placeholder="Your Name">
+              <button class="button btn btn-default" type="submit">Inner Family</button>
             </div>
-
         </form>
 
-      </div>
-
-        <div class="row">
-          <h2>List of Names:</h2>
-          {% for name in names %}
-          <ul>
-            <li><p>{{ name.content }}</p></li>
-          </ul>
-          {% endfor %}
-        </div>
+        <form action="/outer" method="post">
+            <div class="form-group">
+              <button class="button btn btn-default" type="submit">Outer Family</button>
+            </div>
+        </form>
 
       </div>
 
