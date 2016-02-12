@@ -33,6 +33,18 @@ class Home(webapp2.RequestHandler):
 #        if passwords[0] = 'test':
 
 
+class Add(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('add.html')
+        self.response.write(template.render())
+
+class Add_Name(webapp2.RequestHandler):
+    def post(self):
+        name = Data(content=cgi.escape(self.request.get('name')))
+        name.put()
+
+        self.redirect('/add')
+
 class About(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('about.html')
@@ -40,30 +52,23 @@ class About(webapp2.RequestHandler):
 
 class Inner(webapp2.RequestHandler):
     def post(self):
-        name = Data(content=cgi.escape(self.request.get('name'))) #Creates in memory
-        name.put() #Write to datastore
-
         names = Data.query().fetch()
-        name = random.choice(names)
-
-        name.key.delete()
-
         template = JINJA_ENVIRONMENT.get_template('index.html')
 
-        self.response.write(template.render({'name': name.content}))
+        if len(names) == 0:
+            self.response.write(template.render({'name': 'Please Enter a Name'}))
+        else:
+            name = random.choice(names)
+            name.key.delete()
+            self.response.write(template.render({'name': name.content}))
 
         #self.redirect('/#refresh')
 
-class Outer(webapp2.RequestHandler):
-    def post(self):
-        print "Outer"
-
-        self.redirect('/#refresh')
-
 app = webapp2.WSGIApplication([
     ('/', Home),
+    ('/add', Add),
+    ('/addname', Add_Name),
 #    ('/home', Home),
     ('/inner', Inner),
-    ('/outer', Outer),
     ('/about', About),
 ], debug=True)

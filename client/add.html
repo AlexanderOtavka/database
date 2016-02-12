@@ -1,16 +1,14 @@
 <!DOCTYPE html>
+
 <html>
 
   <head>
     <title>Database</title>
 
     <link rel="stylesheet" href="../styles/style.css">
-    <link rel="import" href="bower_components/google-map/google-map.html">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
     <script type="text/javascript" src="scripts/script.js"></script>
-    <script type="text/javascript" src="bower_components/webcomponentsjs/webcomponents"></script>
-
   </head>
 
   <body>
@@ -36,8 +34,8 @@
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                   <li><a href="/">Home <span class="sr-only">(current)</span></a></li>
-                  <li class="active"><a href="/about">About</a></li>
-                  <li><a href="/add">Add</a></li>
+                  <li><a href="/about">About</a></li>
+                  <li class="active"><a href="/add">Add</a></li>
                 </ul>
               </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -45,14 +43,20 @@
         </div>
       </div>
 
-    <div class="container">
-      <h1>About</h1>
-      <p>This website was made by Duncan Grubbs using Google App Engine and Bootstrap.</p>
-      <p>duncan.grubbs@gmail.com</p>
-    </div>
+      <div class="container">
 
-  </div>
+        <form action="/addname" method="post">
+          <div class="row">
+            <div class="form-group">
+              <label for="name">Enter a Name:</label>
+            </div>
+          </div>
 
-  </body>
+          <div class="col-md-6"><input class="form-control name-input" id="name" type="text" name="name" placeholder="Your Name"></div>
+        </form>
+
+      </div>
+
+    </body>
 
 </html>
