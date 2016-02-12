@@ -12,11 +12,26 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class Data(ndb.Model):
   content = ndb.StringProperty()
 
-class MainPage(webapp2.RequestHandler):
+class Home(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('index.html')
 
         self.response.write(template.render())
+
+#class Login(webapp2.RequestHandler):
+#    def get(self):
+#        template = JINJA_ENVIRONMENT.get_template('login.html')
+
+#        self.response.write(template.render())
+
+#class Verify(webapp2.RequestHandler):
+#    def post(self):
+#        password = Data(content.cgi.escape(self.request.get('password')))
+#        password.put()
+
+#        passwords = Data.query().fetch()
+#        if passwords[0] = 'test':
+
 
 class About(webapp2.RequestHandler):
     def get(self):
@@ -25,8 +40,8 @@ class About(webapp2.RequestHandler):
 
 class Inner(webapp2.RequestHandler):
     def post(self):
-        #name = Data(content=cgi.escape(self.request.get('name'))) #Creates in memory
-        #name.put() #Write to datastore
+        name = Data(content=cgi.escape(self.request.get('name'))) #Creates in memory
+        name.put() #Write to datastore
 
         names = Data.query().fetch()
         name = random.choice(names)
@@ -46,7 +61,8 @@ class Outer(webapp2.RequestHandler):
         self.redirect('/#refresh')
 
 app = webapp2.WSGIApplication([
-    ('/', MainPage),
+    ('/', Home),
+#    ('/home', Home),
     ('/inner', Inner),
     ('/outer', Outer),
     ('/about', About),
