@@ -5,7 +5,6 @@ import jinja2
 import os
 import random
 
-
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + "/client"))
 
@@ -17,21 +16,6 @@ class Home(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('index.html')
 
         self.response.write(template.render())
-
-#class Login(webapp2.RequestHandler):
-#    def get(self):
-#        template = JINJA_ENVIRONMENT.get_template('login.html')
-
-#        self.response.write(template.render())
-
-#class Verify(webapp2.RequestHandler):
-#    def post(self):
-#        password = Data(content.cgi.escape(self.request.get('password')))
-#        password.put()
-
-#        passwords = Data.query().fetch()
-#        if passwords[0] = 'test':
-
 
 class Add(webapp2.RequestHandler):
     def get(self):
@@ -62,13 +46,10 @@ class Inner(webapp2.RequestHandler):
             name.key.delete()
             self.response.write(template.render({'name': name.content}))
 
-        #self.redirect('/#refresh')
-
 app = webapp2.WSGIApplication([
     ('/', Home),
     ('/add', Add),
     ('/addname', Add_Name),
-#    ('/home', Home),
     ('/inner', Inner),
     ('/about', About),
 ], debug=True)
