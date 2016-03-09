@@ -9,6 +9,8 @@ handlers:
   static_dir: styles
 - url: /scripts
   static_dir: scripts
+- url: /client/bower_components
+  static_dir: bower_components
 - url: /.*
   script: main.app
 

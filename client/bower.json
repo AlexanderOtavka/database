@@ -17,6 +17,8 @@
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.0.0",
-    "google-map": "GoogleWebComponents/google-map#^1.1.9"
+    "google-map": "GoogleWebComponents/google-map#^1.1.9",
+    "paper-input": "PolymerElements/paper-input#^1.1.9",
+    "paper-fab": "PolymerElements/paper-fab#^1.2.0"
   }
 }
