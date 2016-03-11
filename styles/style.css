@@ -1,5 +1,6 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 body {
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Roboto', open-sans;
 }
 
 p {
@@ -26,10 +27,6 @@ button {
   margin: 10px 10px 10px 300px;
 }
 
-.stuff {
-  margin-top: 50px;
-}
-
 #name-input {
   width: 20%;
 }
@@ -37,4 +34,14 @@ button {
 paper-button {
   background-color: #2196F3;
   color: white;
+}
+
+#name-space {
+  width: 100%;
+  height: 200px;
+  background-color: lightgrey;
+}
+
+#name {
+  margin-top: 75px;
 }

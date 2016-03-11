@@ -17,22 +17,12 @@ class Home(webapp2.RequestHandler):
 
         self.response.write(template.render())
 
-class Add(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('add.html')
-        self.response.write(template.render())
-
 class Add_Name(webapp2.RequestHandler):
     def post(self):
         name = Data(content=cgi.escape(self.request.get('name')))
         name.put()
 
-        self.redirect('/add')
-
-class About(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('about.html')
-        self.response.write(template.render())
+        self.redirect('/')
 
 class Inner(webapp2.RequestHandler):
     def post(self):
@@ -48,8 +38,6 @@ class Inner(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', Home),
-    ('/add', Add),
     ('/addname', Add_Name),
     ('/inner', Inner),
-    ('/about', About),
 ], debug=True)

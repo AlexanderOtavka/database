@@ -23,64 +23,26 @@
 
     <paper-header-panel>
       <paper-toolbar>
-        <div id="title" class="title"><a href="/">Grab Bag</a></div>
+        <div id="title" class="title">Grab Bag</div>
       </paper-toolbar>
     </paper-header-panel>
 
     <div class="content">
 
-
-      <div class="container">
-        <div class="stuff">
-          <paper-input id="name-input" label="Name" for="name" type="text" name="name"></paper-input>
-          <paper-button>Add Name</paper-button>
+      <form action="/addname" method="post">
+        <div class="form-group">
+          <label for="name">Enter a Name:</label>
         </div>
 
-        <div class="stuff">
-          <form action="/inner" method="post">
-            <paper-button name="button" type="submit"><button name="button"></button>Get Name</paper-button>
-          </form>
-          <div class="row"><div class="row"><h4>{{ name }}</h4></div></div>
-        </div>
-      </div>
+        <div class="col-md-6"><input class="form-control name-input" type="text" name="name" placeholder="Your Name"></div>
+        <paper-button><button name="button" type="submit"></button>Add Name</paper-button>
+      </form>
 
-
-
-      <div class="container">
-        <div class="row">
-          <nav class="navbar navbar-default">
-            <div class="container-fluid">
-              <!-- Brand and toggle get grouped for better mobile display -->
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Database</a>
-              </div>
-
-              <!-- Collect the nav links, forms, and other content for toggling -->
-              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                  <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
-                  <li><a href="/about">About</a></li>
-                  <li><a href="/add">Add</a></li>
-                </ul>
-              </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-          </nav>
-        </div>
-      </div>
-
-      <div class="container">
-
-        <div class="row"><form action="/inner" method="post"><button class="btn" name="button">Get a Name</button></form></div>
-
-        <div class="row"><div class="row"><h4>{{ name }}</h4></div></div>
-
-      </div>
+      <form action="/inner" method="post">
+        <paper-button name="button" type="submit"><button name="button"></button>Get Name</paper-button>
+      </form>
+      
+      <div id="name-space"><h1 id="name">{{ name }}</h1></div>
 
     </div>
 
