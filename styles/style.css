@@ -6,6 +6,35 @@ p {
   font-size: 20px;
 }
 
+button {
+  z-index: -3;
+}
+
+.title a {
+  text-decoration: none;
+}
+
+.title a:hover {
+  color: white;
+}
+
 .button {
   margin-top: 10px;
+}
+
+#add-fab {
+  margin: 10px 10px 10px 300px;
+}
+
+.stuff {
+  margin-top: 50px;
+}
+
+#name-input {
+  width: 20%;
+}
+
+paper-button {
+  background-color: #2196F3;
+  color: white;
 }
