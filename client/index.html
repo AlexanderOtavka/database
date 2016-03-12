@@ -5,9 +5,21 @@
   <head>
     <title>Database</title>
 
+    <!-- Meta Stuff -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#04637e">
+    <meta charset="utf-8">
+
+    <!-- Favicons -->
+    <link rel="icon" href="res/images/favicon.png">
+    <link rel="shortcut icon" href="res/images/favicon.png">
+
+    <!-- Styles (and script) -->
     <link rel="stylesheet" href="../styles/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
     <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+    <!-- Paper Elements -->
     <link rel="import" href="/bower_components/paper-fab/paper-fab.html">
     <link rel="import" href="bower_components/paper-toolbar/paper-toolbar.html">
     <link rel="import" href="bower_components/paper-button/paper-button.html">
@@ -16,35 +28,47 @@
     <link rel="import" href="bower_components/paper-header-panel/paper-header-panel.html">
     <link rel="import" href="bower_components/paper-styles/paper-styles-classes.html">
 
-    <script type="text/javascript" src="../scripts/script.js"></script>
+    <!-- Iron Elements -->
+    <link rel="import" href="bower_components/iron-ajax/iron-ajax.html">
   </head>
 
-  <body fullbleed layout vertical>
+  <body unresolved>
 
-    <paper-header-panel>
-      <paper-toolbar>
-        <div id="title" class="title">Grab Bag</div>
-      </paper-toolbar>
-    </paper-header-panel>
+    <template is="dom-bind" id="app">
 
-    <div class="content">
+      <paper-header-panel>
+        <paper-toolbar>
+          <div id="title" class="title">Grab Bag</div>
+        </paper-toolbar>
+        </paper-header-panel>
 
-      <form action="/addname" method="post">
-        <div class="form-group">
-          <label for="name">Enter a Name:</label>
+        <div id="input-name">
+          <paper-input
+            label="Name"
+            value="{{name:input}}">
+          </paper-input>
+
+          <paper-button raised on-tap="sendName">Add Name</paper-button>
         </div>
 
-        <div class="col-md-6"><input class="form-control name-input" type="text" name="name" placeholder="Your Name"></div>
-        <paper-button><button name="button" type="submit"></button>Add Name</paper-button>
-      </form>
+        <form action="/inner" method="post">
+          <paper-button name="button" type="submit"><button name="button"></button>Get Name</paper-button>
+        </form>
 
-      <form action="/inner" method="post">
-        <paper-button name="button" type="submit"><button name="button"></button>Get Name</paper-button>
-      </form>
-      
-      <div id="name-space"><h1 id="name">{{ name }}</h1></div>
 
-    </div>
+        <div id="name-space"><h1 id="name">{{ name }}</h1></div>
+
+      <iron-ajax
+        id="ajax"
+        url="/addname"
+        method="POST"
+        content-type="application/x-www-form-urlencoded"
+        body="[[getMessageBody(name)]]">
+      </iron-ajax>
+
+    </template>
+
+    <script src="../scripts/app.js"></script>
 
   </body>
 
